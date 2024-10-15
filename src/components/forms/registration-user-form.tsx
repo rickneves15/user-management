@@ -1,6 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 
 import { Button } from '~/components/ui/button'
 import {
@@ -12,14 +14,6 @@ import {
   CardTitle,
 } from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
-import { Label } from '~/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '~/components/ui/select'
 import {
   Form,
   FormControl,
@@ -34,9 +28,11 @@ import {
   registrationUserFormSchema,
 } from '~/schemas/registration-user-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useGetAddress } from '~/hooks/use-get-address'
+import { createUser } from '~/services/users'
 
-export default function RegistrationUserForm() {
-  const [isLoading, setIsLoading] = useState(false)
+export function RegistrationUserForm() {
+  const router = useRouter()
   const form = useForm<RegistrationUserForm>({
     resolver: zodResolver(registrationUserFormSchema),
     defaultValues: {
@@ -55,9 +51,28 @@ export default function RegistrationUserForm() {
     },
   })
 
-  const onSubmit = (values: RegistrationUserForm) => {
-    console.log(values)
+  const onSubmit = async (values: RegistrationUserForm) => {
+    const response = await createUser(values)
+
+    if (response?.success) {
+      toast.success('User created successfully', {
+        duration: 1000,
+        onAutoClose: () => router.push('/'),
+      })
+    }
   }
+
+  const cepField = form.watch('address.cep')
+  const { data: address, isLoading: isLoadingAddress } = useGetAddress(cepField)
+
+  useEffect(() => {
+    if (address) {
+      form.setValue('address', {
+        ...form.getValues('address'),
+        ...address,
+      })
+    }
+  }, [address, cepField])
 
   return (
     <Card className="mx-auto max-w-2xl">
@@ -138,6 +153,28 @@ export default function RegistrationUserForm() {
 
             <FormField
               control={form.control}
+              name="address.cep"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>CEP</FormLabel>
+                  <FormControl>
+                    <Input placeholder="CEP" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                  {isLoadingAddress && (
+                    <p className="text-sm text-zinc-500">
+                      Wait for getting address to cep.
+                    </p>
+                  )}
+                  {!address && (
+                    <p className="text-sm text-zinc-500">CEP not found</p>
+                  )}
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
               name="address.street"
               render={({ field }) => (
                 <FormItem>
@@ -205,150 +242,17 @@ export default function RegistrationUserForm() {
                 </FormItem>
               )}
             />
-
-            <FormField
-              control={form.control}
-              name="address.cep"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>CEP</FormLabel>
-                  <FormControl>
-                    <Input placeholder="CEP" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </form>
         </Form>
-        {/* <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="fullName">Nome Completo</Label>
-              <Input
-                id="fullName"
-                name="fullName"
-                required
-                value={formData.fullName}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">E-mail</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                required
-                value={formData.email}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Senha</Label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                required
-                value={formData.password}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirmar Senha</Label>
-              <Input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                required
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="cep">CEP</Label>
-            <Input
-              id="cep"
-              name="cep"
-              required
-              value={formData.cep}
-              onChange={handleInputChange}
-              onBlur={handleCEPBlur}
-              maxLength={8}
-            />
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="street">Rua</Label>
-              <Input
-                id="street"
-                name="street"
-                required
-                value={formData.street}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="number">Número</Label>
-              <Input
-                id="number"
-                name="number"
-                required
-                value={formData.number}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="neighborhood">Bairro</Label>
-              <Input
-                id="neighborhood"
-                name="neighborhood"
-                required
-                value={formData.neighborhood}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="city">Cidade</Label>
-              <Input
-                id="city"
-                name="city"
-                required
-                value={formData.city}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="space-y-2 sm:col-span-2">
-              <Label htmlFor="state">Estado</Label>
-              <Select
-                name="state"
-                value={formData.state}
-                onValueChange={(value) =>
-                  setFormData((prev) => ({ ...prev, state: value }))
-                }
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Selecione o estado" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="SP">São Paulo</SelectItem>
-                  <SelectItem value="RJ">Rio de Janeiro</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </form> */}
       </CardContent>
       <CardFooter>
         <Button
           form="registration-user-form"
           type="submit"
           className="w-full"
-          disabled={isLoading}
+          disabled={form.formState.isLoading}
         >
-          {isLoading ? 'Carregando...' : 'Cadastrar'}
+          {form.formState.isLoading ? 'Loading...' : 'Register'}
         </Button>
       </CardFooter>
     </Card>

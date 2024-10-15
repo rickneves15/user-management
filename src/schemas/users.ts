@@ -1,19 +1,13 @@
 import { z } from 'zod'
+import { addressSchema } from './address'
 
 export const userSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   fullName: z.string().min(3),
   email: z.string().email(),
   password: z.string().min(6),
   passwordConfirmation: z.string().min(6),
-  address: z.object({
-    street: z.string().min(3),
-    neighborhood: z.string().min(3),
-    number: z.string().optional(),
-    city: z.string().min(3),
-    state: z.string().min(3),
-    cep: z.string().min(8),
-  }),
+  address: addressSchema,
 })
 export const usersSchema = z.array(userSchema)
 

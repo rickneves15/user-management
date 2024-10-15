@@ -10,7 +10,7 @@ import { cn } from '~/lib/utils'
 
 export function Navbar() {
   const pathname = usePathname()
-  console.log(pathname)
+
   return (
     <nav className="bg-white shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -19,6 +19,7 @@ export function ListUsers() {
     queryKey: ['users'],
     queryFn: () => getUsers(),
   })
+
   return (
     <BaseLayout title="List Users">
       <div className="overflow-hidden bg-white shadow sm:rounded-lg">
