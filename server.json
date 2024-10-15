@@ -1,3 +1,274 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": "AfkaKZo",
+      "fullName": "Chickie Froom",
+      "email": "cfroom0@artisteer.com",
+      "password": "123456",
+      "passwordConfirmation": "123456",
+      "address": {
+        "street": "05285 Westend Crossing",
+        "neighborhood": "São Francisco de Assis",
+        "number": "0",
+        "city": "Verkhniye Kigi",
+        "state": null,
+        "cep": "452500"
+      }
+    },
+    {
+      "id": "BfkaLZo",
+      "fullName": "John Doe",
+      "email": "johndoe@example.com",
+      "password": "abcdef",
+      "passwordConfirmation": "abcdef",
+      "address": {
+        "street": "123 Main St",
+        "neighborhood": "Downtown",
+        "number": "101",
+        "city": "Springfield",
+        "state": "IL",
+        "cep": "62701"
+      }
+    },
+    {
+      "id": "CfkaMZo",
+      "fullName": "Jane Smith",
+      "email": "janesmith@example.com",
+      "password": "password",
+      "passwordConfirmation": "password",
+      "address": {
+        "street": "456 Elm St",
+        "neighborhood": "Uptown",
+        "number": "202",
+        "city": "Metropolis",
+        "state": "NY",
+        "cep": "10001"
+      }
+    },
+    {
+      "id": "DfkaNZo",
+      "fullName": "Alice Johnson",
+      "email": "alicej@example.com",
+      "password": "qwerty",
+      "passwordConfirmation": "qwerty",
+      "address": {
+        "street": "789 Oak St",
+        "neighborhood": "Suburbia",
+        "number": "303",
+        "city": "Gotham",
+        "state": "CA",
+        "cep": "90210"
+      }
+    },
+    {
+      "id": "EfkaOZo",
+      "fullName": "Bob Brown",
+      "email": "bobb@example.com",
+      "password": "zxcvbn",
+      "passwordConfirmation": "zxcvbn",
+      "address": {
+        "street": "101 Pine St",
+        "neighborhood": "Old Town",
+        "number": "404",
+        "city": "Star City",
+        "state": "TX",
+        "cep": "73301"
+      }
+    },
+    {
+      "id": "GfkaPZo",
+      "fullName": "Charlie Davis",
+      "email": "charlied@example.com",
+      "password": "asdfgh",
+      "passwordConfirmation": "asdfgh",
+      "address": {
+        "street": "202 Maple St",
+        "neighborhood": "New Town",
+        "number": "505",
+        "city": "Central City",
+        "state": "FL",
+        "cep": "32801"
+      }
+    },
+    {
+      "id": "HfkaQZo",
+      "fullName": "Diana Evans",
+      "email": "dianae@example.com",
+      "password": "ghijkl",
+      "passwordConfirmation": "ghijkl",
+      "address": {
+        "street": "303 Birch St",
+        "neighborhood": "East Side",
+        "number": "606",
+        "city": "Coast City",
+        "state": "WA",
+        "cep": "98101"
+      }
+    },
+    {
+      "id": "IfkaRZo",
+      "fullName": "Eve Foster",
+      "email": "evef@example.com",
+      "password": "mnopqr",
+      "passwordConfirmation": "mnopqr",
+      "address": {
+        "street": "404 Cedar St",
+        "neighborhood": "West End",
+        "number": "707",
+        "city": "Blüdhaven",
+        "state": "OR",
+        "cep": "97201"
+      }
+    },
+    {
+      "id": "JfkaSZo",
+      "fullName": "Frank Green",
+      "email": "frankg@example.com",
+      "password": "stuvwx",
+      "passwordConfirmation": "stuvwx",
+      "address": {
+        "street": "505 Walnut St",
+        "neighborhood": "North Side",
+        "number": "808",
+        "city": "Keystone City",
+        "state": "PA",
+        "cep": "19101"
+      }
+    },
+    {
+      "id": "KfkaTZo",
+      "fullName": "Grace Harris",
+      "email": "graceh@example.com",
+      "password": "yzabcd",
+      "passwordConfirmation": "yzabcd",
+      "address": {
+        "street": "606 Chestnut St",
+        "neighborhood": "South Side",
+        "number": "909",
+        "city": "Fawcett City",
+        "state": "OH",
+        "cep": "44101"
+      }
+    },
+    {
+      "id": "LfkaUZo",
+      "fullName": "Henry Irving",
+      "email": "henryi@example.com",
+      "password": "efghij",
+      "passwordConfirmation": "efghij",
+      "address": {
+        "street": "707 Spruce St",
+        "neighborhood": "Midtown",
+        "number": "1010",
+        "city": "Hub City",
+        "state": "MI",
+        "cep": "48201"
+      }
+    },
+    {
+      "id": "MfkaVZo",
+      "fullName": "Ivy Johnson",
+      "email": "ivyj@example.com",
+      "password": "klmnop",
+      "passwordConfirmation": "klmnop",
+      "address": {
+        "street": "808 Fir St",
+        "neighborhood": "Downtown",
+        "number": "1111",
+        "city": "Gateway City",
+        "state": "MO",
+        "cep": "63101"
+      }
+    },
+    {
+      "id": "NfkaWZo",
+      "fullName": "Jack King",
+      "email": "jackk@example.com",
+      "password": "qrstuv",
+      "passwordConfirmation": "qrstuv",
+      "address": {
+        "street": "909 Redwood St",
+        "neighborhood": "Uptown",
+        "number": "1212",
+        "city": "Opal City",
+        "state": "NV",
+        "cep": "89501"
+      }
+    },
+    {
+      "id": "OfkaXZo",
+      "fullName": "Kara Lewis",
+      "email": "karal@example.com",
+      "password": "wxyzab",
+      "passwordConfirmation": "wxyzab",
+      "address": {
+        "street": "1010 Cypress St",
+        "neighborhood": "Suburbia",
+        "number": "1313",
+        "city": "Ivy Town",
+        "state": "CO",
+        "cep": "80201"
+      }
+    },
+    {
+      "id": "PfkaYZo",
+      "fullName": "Leo Martin",
+      "email": "leom@example.com",
+      "password": "cdefgh",
+      "passwordConfirmation": "cdefgh",
+      "address": {
+        "street": "1111 Palm St",
+        "neighborhood": "Old Town",
+        "number": "1414",
+        "city": "Happy Harbor",
+        "state": "AZ",
+        "cep": "85001"
+      }
+    },
+    {
+      "id": "QfkaZZo",
+      "fullName": "Mia Nelson",
+      "email": "mian@example.com",
+      "password": "ijklmn",
+      "passwordConfirmation": "ijklmn",
+      "address": {
+        "street": "1212 Willow St",
+        "neighborhood": "New Town",
+        "number": "1515",
+        "city": "Smallville",
+        "state": "KS",
+        "cep": "66001"
+      }
+    },
+    {
+      "id": "RfkaAAZo",
+      "fullName": "Nina Owens",
+      "email": "ninao@example.com",
+      "password": "opqrst",
+      "passwordConfirmation": "opqrst",
+      "address": {
+        "street": "1313 Poplar St",
+        "neighborhood": "East Side",
+        "number": "1616",
+        "city": "Midway City",
+        "state": "UT",
+        "cep": "84001"
+      }
+    },
+    {
+      "id": "SfkaABZo",
+      "fullName": "Oscar Perry",
+      "email": "oscarp@example.com",
+      "password": "uvwxyz",
+      "passwordConfirmation": "uvwxyz",
+      "address": {
+        "street": "1414 Ash St",
+        "neighborhood": "West End",
+        "number": "1717",
+        "city": "Central City",
+        "state": "NM",
+        "cep": "87501"
+      }
+    }
+  ]
 }
