@@ -60,3 +60,31 @@ export const createUser = async (
     toast.error('Error while creating user')
   }
 }
+
+export const login = async (email: string, password: string) => {
+  try {
+    const response = await api.get(`/users?email=${email}`)
+    const userExist = response?.data[0]
+
+    if (!userExist) {
+      toast.error('User not found.')
+      return {
+        success: false,
+      }
+    }
+
+    if (userExist.password !== password) {
+      toast.error('E-mail or password is invalid.')
+      return {
+        success: false,
+      }
+    }
+
+    return {
+      user: userExist,
+      success: true,
+    }
+  } catch (error) {
+    toast.error('Error while login user')
+  }
+}

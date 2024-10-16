@@ -4,12 +4,13 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { routes } from '~/constants'
-
 import { Sidebar } from './sidebar'
 import { cn } from '~/lib/utils'
+import { useAuth } from '~/providers/auth'
 
 export function Navbar() {
   const pathname = usePathname()
+  const { userAuthenticated, signOut } = useAuth()
 
   return (
     <nav className="bg-white shadow-sm">
@@ -27,7 +28,7 @@ export function Navbar() {
                   key={route.name}
                   href={route.path}
                   className={cn(
-                    'inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900',
+                    'inline-flex items-center text-sm font-medium text-gray-900',
                     {
                       'border-b-2 border-indigo-500': route.path === pathname,
                     },
@@ -36,6 +37,18 @@ export function Navbar() {
                   {route.name}
                 </Link>
               ))}
+              {userAuthenticated && (
+                <div className="flex items-center gap-4 text-sm font-medium">
+                  <span>{userAuthenticated.fullName}</span>
+                  <Link
+                    href="#"
+                    onClick={signOut}
+                    className="inline-flex items-center text-sm font-medium text-gray-900"
+                  >
+                    Logout
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
           <div className="flex items-center">

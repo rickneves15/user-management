@@ -6,8 +6,11 @@ import Link from 'next/link'
 import { Button } from '~/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '~/components/ui/sheet'
 import { routes } from '~/constants'
+import { useAuth } from '~/providers/auth'
 
 export function Sidebar() {
+  const { userAuthenticated, signOut } = useAuth()
+
   return (
     <Sheet>
       <SheetTrigger className="flex items-center" asChild>
@@ -27,6 +30,20 @@ export function Sidebar() {
               {route.name}
             </Link>
           ))}
+          {userAuthenticated && (
+            <div className="grid gap-6 text-lg font-medium">
+              <span className="flex items-center gap-4 px-2.5 text-muted-foreground">
+                {userAuthenticated.fullName}
+              </span>
+              <Link
+                href="#"
+                onClick={signOut}
+                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+              >
+                Logout
+              </Link>
+            </div>
+          )}
         </nav>
       </SheetContent>
     </Sheet>
