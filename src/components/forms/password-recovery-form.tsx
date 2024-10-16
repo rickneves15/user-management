@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 import { Button } from '~/components/ui/button'
 import {
@@ -13,13 +14,25 @@ import {
 } from '~/components/ui/card'
 import { Input } from '~/components/ui/input'
 import { Label } from '~/components/ui/label'
+import { passwordRecovery } from '~/services/users'
 
 export function PasswordRecoveryForm() {
+  const [isSent, setIsSent] = useState(false)
   const [email, setEmail] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Password recovery request for:', email)
+    // Simulate sending password recovery link
+    const response = await passwordRecovery(email)
+    if (response?.success) {
+      toast.success('Password recovery link sent to: ' + email, {
+        duration: 1000,
+        onAutoClose: () => {
+          setEmail('')
+          setIsSent(true)
+        },
+      })
+    }
   }
 
   return (
@@ -33,24 +46,29 @@ export function PasswordRecoveryForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="email">E-mail</Label>
-            <Input
-              id="email"
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-        </form>
+        {isSent ? (
+          <p className="text-sm text-green-500 sm:text-base">
+            Check your email for the link.
+          </p>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">E-mail</Label>
+              <Input
+                id="email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <Button type="submit" className="w-full">
+              Send Recovery Link
+            </Button>
+          </form>
+        )}
       </CardContent>
-      <CardFooter>
-        <Button type="submit" className="w-full">
-          Send Recovery Link
-        </Button>
-      </CardFooter>
     </Card>
   )
 }

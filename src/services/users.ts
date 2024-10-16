@@ -88,3 +88,21 @@ export const login = async (email: string, password: string) => {
     toast.error('Error while login user')
   }
 }
+
+export const passwordRecovery = async (email: string) => {
+  try {
+    const response = await api.get(`/users?email=${email}`)
+    const userExist = response?.data[0]
+    if (!userExist) {
+      toast.error('User not found.')
+      return {
+        success: false,
+      }
+    }
+    return {
+      success: true,
+    }
+  } catch (error) {
+    toast.error('Error while login user')
+  }
+}
